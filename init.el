@@ -8,6 +8,23 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
+;; Package init.
+(setq package-check-signature nil)
+(require 'package)
+
+(unless (bound-and-true-p package--initialized)
+  (package-initialize))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-and-compile
+  (setq use-package-always-ensure t
+        use-package-expand-minimally t))
+
 ;; reload emacs configuration showrtcut.
 (defun reload-init-file ()
   (interactive)
@@ -31,7 +48,6 @@
       )
 
 
-(require 'package)
 (setq package-archives '(
     ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/") 
     ("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
@@ -39,14 +55,7 @@
 ;; old archieve address
 ;; (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-and-compile
-  (setq use-package-always-ensure t
-        use-package-expand-minimally t))
 
 
 ;; evil mode
@@ -183,10 +192,11 @@
 ;; disable displaying line number to increase the performance (don't know if this really works)
 (setq display-line-numbers-type nil)
 
-;;(set-frame-font "PT Mono 15")
-;;(set-frame-font "Andale Mono 15")
-;;(set-frame-font "Monaco 15")
-(set-frame-font "Menlo 15")
+;; (set-frame-font "PT Mono 15")
+;; (set-frame-font "Andale Mono 15")
+;; (set-frame-font "Monaco 15")
+(set-frame-font "Menlo 15") ;; remember to first download the font on windows systems.
+
 
 ;; set not showing parenthesis pair matching
 (setq-default show-paren-data-function #'ignore)
