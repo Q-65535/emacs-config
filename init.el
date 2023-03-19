@@ -96,6 +96,7 @@
 
 ;; disable sound
 (setq ring-bell-function 'ignore)
+(abbrev-mode -1)
 
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "C-x <down>") 'switch-to-buffer)
@@ -195,7 +196,12 @@
 ;; (set-frame-font "PT Mono 15")
 ;; (set-frame-font "Andale Mono 15")
 ;; (set-frame-font "Monaco 15")
-(set-frame-font "Menlo 15") ;; remember to first download the font on windows systems.
+
+;; remember to first download the font on windows systems.
+(when (eq system-type 'darwin)
+  (set-frame-font "Menlo 15"))
+(when (eq system-type 'windows-nt)
+  (set-frame-font "Menlo 12"))
 
 
 ;; set not showing parenthesis pair matching
