@@ -70,10 +70,19 @@
 (use-package goto-chg)
 (global-set-key (kbd "M-i") 'goto-last-change-reverse)
 (global-set-key (kbd "M-o") 'goto-last-change)
+(global-set-key (kbd "C-g") 'projectile-grep)
 
 (use-package topspace
   :config
   (global-topspace-mode 1))
+
+;; Search string in windows-nt systems.
+(when (eq system-type 'windows-nt)
+  (with-eval-after-load 'grep
+    ;; findstr can handle the basic find|grep use case
+    (grep-apply-setting 'grep-find-template
+                        "findstr /S /N /D:. /C:<R> <F>")
+    (setq find-name-arg nil)))
 
 ;; word expansion must be case sensitive!!!
 (setq dabbrev-case-fold-search nil)
@@ -230,8 +239,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
  '(package-selected-packages
-   '(frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
+   '(ag frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
  '(read-file-name-completion-ignore-case nil)
  '(tab-width 4))
 (custom-set-faces
