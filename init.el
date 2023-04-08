@@ -188,6 +188,7 @@
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 (define-key evil-normal-state-map (kbd "K") 'evil-end-of-line)
 (define-key evil-normal-state-map (kbd "Q") 'evil-invert-char)
+(define-key evil-normal-state-map (kbd "J") 'evil-percentage-of-line)
 
 ;; disable displaying line number to increase the performance (don't know if this really works)
 (setq display-line-numbers-type nil)
