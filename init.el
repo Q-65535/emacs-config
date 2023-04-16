@@ -84,6 +84,13 @@
                         "findstr /S /N /D:. /C:<R> <F>")
     (setq find-name-arg nil)))
 
+(defun powershell ()
+  "Run powershell"
+  (interactive)
+  (async-shell-command "c:/windows/system32/WindowsPowerShell/v1.0/powershell.exe"
+               nil
+               nil))
+
 ;; word expansion must be case sensitive!!!
 (setq dabbrev-case-fold-search nil)
 
@@ -123,6 +130,8 @@
 (define-key evil-motion-state-map (kbd "C-e") 'evil-window-next)
 (define-key evil-motion-state-map (kbd "C-x C-x") 'projectile-find-file)
 (define-key evil-motion-state-map (kbd "C-x <up>") 'kill-current-buffer)
+;; (define-key evil-motion-state-map (kbd "C-") 'evil-scroll-line-up)
+;; (define-key evil-motion-state-map (kbd "C-") 'evil-scroll-line-down)
 
 ;; theme
 (use-package zenburn-theme
