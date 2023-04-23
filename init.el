@@ -123,15 +123,14 @@
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-d") (kbd "C-x"))
 
-
 ;; evil keybindings
 (define-key evil-motion-state-map (kbd "C-x C-j") 'switch-to-buffer)
 ;; (define-key evil-motion-state-map (kbd "C-x <down>") 'switch-to-buffer)
 (define-key evil-motion-state-map (kbd "C-e") 'evil-window-next)
 (define-key evil-motion-state-map (kbd "C-x C-x") 'projectile-find-file)
 (define-key evil-motion-state-map (kbd "C-x <up>") 'kill-current-buffer)
-;; (define-key evil-motion-state-map (kbd "C-") 'evil-scroll-line-up)
-;; (define-key evil-motion-state-map (kbd "C-") 'evil-scroll-line-down)
+(define-key evil-normal-state-map (kbd "K") 'evil-scroll-line-up)
+(define-key evil-normal-state-map (kbd "J") 'evil-scroll-line-down)
 
 ;; theme
 (use-package zenburn-theme
@@ -153,8 +152,6 @@
 ;; set control and meta key
 (setq mac-command-modifier 'control)
 (setq mac-option-modifier 'meta)
-
-
 
 (use-package flx-ido
   :config
@@ -205,9 +202,9 @@
 ;; map "j" and "k" to "gj" and "gk"
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-(define-key evil-normal-state-map (kbd "K") 'evil-end-of-line)
 (define-key evil-normal-state-map (kbd "Q") 'evil-invert-char)
-(define-key evil-normal-state-map (kbd "J") 'evil-percentage-of-line)
+;; (define-key evil-normal-state-map (kbd "K") 'evil-end-of-line)
+;; (define-key evil-normal-state-map (kbd "J") 'evil-percentage-of-line)
 
 ;; disable displaying line number to increase the performance (don't know if this really works)
 (setq display-line-numbers-type nil)
