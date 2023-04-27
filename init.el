@@ -52,10 +52,6 @@
     ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/") 
     ("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
     ("org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
-;; old archieve address
-;; (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-
 
 
 ;; evil mode
@@ -107,8 +103,8 @@
 ;; scroll margin, we need set the margin to 0 for topspace to work properly...
 (setq scroll-margin 0)
 
-;; we set default indentation to be 4 (this seems to be malfunction?)
-(setq tab-width 4)
+;; c-like lang indent length is 4.
+(setq-default c-basic-offset 4)
 
 ;; disable sound
 (setq ring-bell-function 'ignore)
@@ -116,16 +112,27 @@
 
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "C-x <down>") 'switch-to-buffer)
+;; specifically for linux
+(global-set-key (kbd "C-x C-k") 'kill-current-buffer)
+(global-set-key (kbd "C-x C-j") 'switch-to-buffer)
+(global-set-key (kbd "M-j") (kbd "<down>"))
+(global-set-key (kbd "M-h") (kbd "<left>"))
+(global-set-key (kbd "M-k") (kbd "<up>"))
+(global-set-key (kbd "M-l") (kbd "<right>"))
 
 ;; hilight current line
 (global-hl-line-mode 1)
 
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-d") (kbd "C-x"))
+;; specifically for linux
+(define-key key-translation-map (kbd "C-h") (kbd "DEL"))
+(define-key key-translation-map (kbd "C-j") (kbd "<down>"))
+(define-key key-translation-map (kbd "C-k") (kbd "<up>"))
 
 ;; evil keybindings
-(define-key evil-motion-state-map (kbd "C-x C-j") 'switch-to-buffer)
-;; (define-key evil-motion-state-map (kbd "C-x <down>") 'switch-to-buffer)
+;; (define-key evil-motion-state-map (kbd "C-x C-j") 'switch-to-buffer)
+(define-key evil-motion-state-map (kbd "C-x <down>") 'switch-to-buffer)
 (define-key evil-motion-state-map (kbd "C-e") 'evil-window-next)
 (define-key evil-motion-state-map (kbd "C-x C-x") 'projectile-find-file)
 (define-key evil-motion-state-map (kbd "C-x <up>") 'kill-current-buffer)
