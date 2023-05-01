@@ -40,12 +40,17 @@
   (evil-set-undo-system 'undo-tree)
   (global-undo-tree-mode 1))
 
-
 (setq lazy-highlight t                 ; highlight occurrences
       lazy-highlight-cleanup nil       ; keep search term highlighted
       lazy-highlight-max-at-a-time nil ; all occurences in file
       isearch-allow-scroll t           ; continue the search even though we're scrolling
       )
+
+;; search no delay.
+(setq lazy-highlight-initial-delay 0)
+(setq lazy-highlight-interval 0)
+;; (global-hi-lock-mode 1)
+;; (setq evil-ex-search-persistent-highlight nil)
 
 
 (setq package-archives '(
@@ -58,10 +63,15 @@
 (use-package evil
   :config
   (evil-mode 1))
+(evil-select-search-module 'evil-search-module 'evil-search)
 ;; work with evil
 (use-package better-jumper
   :config
   (better-jumper-mode 1))
+
+
+(use-package tramp)
+(setq tramp-default-method "plink")
 
 (use-package goto-chg)
 (global-set-key (kbd "M-i") 'goto-last-change-reverse)
@@ -138,6 +148,7 @@
 (define-key evil-motion-state-map (kbd "C-x <up>") 'kill-current-buffer)
 (define-key evil-normal-state-map (kbd "K") 'evil-scroll-line-up)
 (define-key evil-normal-state-map (kbd "J") 'evil-scroll-line-down)
+(define-key evil-normal-state-map (kbd "C-l") 'evil-ex-nohighlight)
 
 ;; theme
 (use-package zenburn-theme
@@ -222,7 +233,7 @@
 
 ;; remember to first download the font on windows systems.
 (when (eq system-type 'darwin)
-  (set-frame-font "Menlo 15"))
+  (set-frame-font "Menlo 16"))
 (when (eq system-type 'windows-nt)
   (set-frame-font "Menlo 12"))
 
@@ -254,8 +265,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(isearch-hide-immediately t)
  '(package-selected-packages
-   '(ag frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
+   '(ssh ag frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
  '(read-file-name-completion-ignore-case nil)
  '(tab-width 4))
 (custom-set-faces
