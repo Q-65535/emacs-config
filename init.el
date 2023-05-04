@@ -114,12 +114,14 @@
 (setq scroll-margin 0)
 
 ;; c-like lang indent length is 4.
-(setq-default c-basic-offset 4)
+;; (setq-default c-basic-offset 4)
 
 ;; disable sound
 (setq ring-bell-function 'ignore)
 (abbrev-mode -1)
 
+;; auto indent only for return!
+(define-key global-map (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "C-x <down>") 'switch-to-buffer)
 ;; specifically for linux
@@ -221,7 +223,8 @@
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 (define-key evil-normal-state-map (kbd "Q") 'evil-invert-char)
-;; (define-key evil-normal-state-map (kbd "K") 'evil-end-of-line)
+(define-key evil-motion-state-map (kbd ";") 'evil-end-of-line)
+(define-key evil-motion-state-map (kbd "C-;") 'evil-jump-item)
 ;; (define-key evil-normal-state-map (kbd "J") 'evil-percentage-of-line)
 
 ;; disable displaying line number to increase the performance (don't know if this really works)
