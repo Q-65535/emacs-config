@@ -120,6 +120,9 @@
 (setq ring-bell-function 'ignore)
 (abbrev-mode -1)
 
+;; diable auto indent
+(electric-indent-mode 0)
+
 ;; auto indent only for return!
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-s") 'save-buffer)
