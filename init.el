@@ -69,6 +69,11 @@
   :config
   (better-jumper-mode 1))
 
+(use-package evil-escape
+  :config
+  (evil-escape-mode 1)
+	(setq-default evil-escape-key-sequence "fd")
+)
 
 (use-package tramp)
 (setq tramp-default-method "plink")
@@ -153,7 +158,7 @@
 (define-key evil-motion-state-map (kbd "C-x <up>") 'kill-current-buffer)
 (define-key evil-normal-state-map (kbd "K") 'evil-scroll-line-up)
 (define-key evil-normal-state-map (kbd "J") 'evil-scroll-line-down)
-(define-key evil-normal-state-map (kbd "C-l") 'evil-ex-nohighlight)
+(define-key evil-motion-state-map (kbd "C-l") 'evil-ex-nohighlight)
 
 ;; theme
 (use-package zenburn-theme
@@ -184,20 +189,18 @@
 
 (use-package go-mode)
 
-;;werfafefsforaforforwafncriwerwer
-
 ;; (global-set-key (kbd "f C-.") 'delete-backward-char)
 ;; "fd" to normal mode
-(defun evil-insert-fd-for-normal-mode ()
-  (interactive)
-  (insert "f")
-  (let ((event (read-event nil)))
-    (if (= event ?d)
-      (progn
-        (backward-delete-char 1)
-        (evil-normal-state))
-      (push event unread-command-events))))
-(define-key evil-insert-state-map "f" 'evil-insert-fd-for-normal-mode)
+;; (defun evil-insert-fd-for-normal-mode ()
+;;   (interactive)
+;;   (insert "f")
+;;   (let ((event (read-event nil)))
+;;     (if (= event ?d)
+;;       (progn
+;;         (backward-delete-char 1)
+;;         (evil-normal-state))
+;;       (push event unread-command-events))))
+;; (define-key evil-insert-state-map "f" 'evil-insert-fd-for-normal-mode)
 
 ;; disable wrap
 (set-default 'truncate-lines t)
@@ -223,9 +226,9 @@
   (define-key evil-motion-state-map (kbd "C-i") 'better-jumper-jump-forward))
 
 ;; map "j" and "k" to "gj" and "gk"
-(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-(define-key evil-normal-state-map (kbd "Q") 'evil-invert-char)
+(define-key evil-motion-state-map (kbd "j") 'evil-next-visual-line)
+(define-key evil-motion-state-map (kbd "k") 'evil-previous-visual-line)
+(define-key evil-motion-state-map (kbd "Q") 'evil-invert-char)
 (define-key evil-motion-state-map (kbd ";") 'evil-end-of-line)
 (define-key evil-motion-state-map (kbd "C-;") 'evil-jump-item)
 ;; (define-key evil-normal-state-map (kbd "J") 'evil-percentage-of-line)
@@ -273,7 +276,7 @@
  '(column-number-mode t)
  '(isearch-hide-immediately t)
  '(package-selected-packages
-   '(ssh ag frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
+   '(evil-escape ssh ag frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
  '(read-file-name-completion-ignore-case nil)
  '(tab-width 4))
 (custom-set-faces
