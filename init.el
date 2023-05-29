@@ -49,15 +49,14 @@
 ;; search no delay.
 (setq lazy-highlight-initial-delay 0)
 (setq lazy-highlight-interval 0)
-;; (global-hi-lock-mode 1)
-;; (setq evil-ex-search-persistent-highlight nil)
-
 
 (setq package-archives '(
     ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/") 
     ("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
     ("org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
 
+(use-package unicode-fonts)
+(unicode-fonts-setup)
 
 ;; evil mode
 (use-package evil
@@ -189,19 +188,6 @@
 
 (use-package go-mode)
 
-;; (global-set-key (kbd "f C-.") 'delete-backward-char)
-;; "fd" to normal mode
-;; (defun evil-insert-fd-for-normal-mode ()
-;;   (interactive)
-;;   (insert "f")
-;;   (let ((event (read-event nil)))
-;;     (if (= event ?d)
-;;       (progn
-;;         (backward-delete-char 1)
-;;         (evil-normal-state))
-;;       (push event unread-command-events))))
-;; (define-key evil-insert-state-map "f" 'evil-insert-fd-for-normal-mode)
-
 ;; disable wrap
 (set-default 'truncate-lines t)
 (setq hscroll-margin 1)
@@ -216,9 +202,9 @@
 (set-language-environment "UTF-8")
 
 ;; set cursor style (this only works in GUI mode?)
-(setq evil-normal-state-cursor '(box "light blue")
-      evil-insert-state-cursor '(bar "medium sea green")
-      evil-visual-state-cursor '(hollow "orange"))
+(setq evil-normal-state-cursor '(box "#03fc17")
+      evil-insert-state-cursor '(bar "#03fc17")
+      evil-visual-state-cursor '(hollow "#03fc17"))
 
 ;; jump cursor to previous and next position the "vim" way
 (with-eval-after-load 'evil-maps
@@ -228,7 +214,7 @@
 ;; map "j" and "k" to "gj" and "gk"
 (define-key evil-motion-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "k") 'evil-previous-visual-line)
-(define-key evil-motion-state-map (kbd "Q") 'evil-invert-char)
+(define-key evil-normal-state-map (kbd "Q") 'evil-invert-char)
 (define-key evil-motion-state-map (kbd ";") 'evil-end-of-line)
 (define-key evil-motion-state-map (kbd "C-;") 'evil-jump-item)
 ;; (define-key evil-normal-state-map (kbd "J") 'evil-percentage-of-line)
@@ -278,9 +264,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(isearch-hide-immediately t)
  '(package-selected-packages
-   '(evil-escape ssh ag frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
+   '(unicode-fonts evil-escape ssh ag frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
  '(read-file-name-completion-ignore-case nil)
  '(tab-width 4))
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
