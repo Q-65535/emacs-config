@@ -119,6 +119,7 @@
 
 ;; c-like lang indent length is 4.
 ;; (setq-default c-basic-offset 4)
+(setq-default evil-shift-width 2)
 
 ;; disable sound
 (setq ring-bell-function 'ignore)
