@@ -82,6 +82,7 @@
 (global-set-key (kbd "M-o") 'goto-last-change)
 (global-set-key (kbd "C-g") 'projectile-grep)
 
+
 (use-package topspace
   :config
   (global-topspace-mode 1))
@@ -159,6 +160,9 @@
 (define-key evil-normal-state-map (kbd "K") 'evil-scroll-line-up)
 (define-key evil-normal-state-map (kbd "J") 'evil-scroll-line-down)
 (define-key evil-motion-state-map (kbd "C-l") 'evil-ex-nohighlight)
+(define-key evil-normal-state-map (kbd "z") 'evil-scroll-line-to-center)
+(define-key evil-normal-state-map (kbd "<") 'evil-shift-left-line)
+(define-key evil-normal-state-map (kbd ">") 'evil-shift-right-line)
 
 ;; theme
 (use-package zenburn-theme
