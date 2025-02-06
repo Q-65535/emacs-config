@@ -82,7 +82,6 @@
 (global-set-key (kbd "M-o") 'goto-last-change)
 (global-set-key (kbd "C-g") 'projectile-grep)
 (global-set-key (kbd "<f5>") 'revert-buffer)
-(revert-buffer t t)
 
 (use-package topspace
   :config
@@ -211,7 +210,6 @@
 ;; (global-visual-line-mode t)
 
 ;; auto sync disk files
-(revert-buffer :ignore-auto :noconfirm)
 (global-auto-revert-mode 1)
 
 ;; set encoding
@@ -282,6 +280,7 @@
  '(column-number-mode t)
  '(isearch-hide-immediately t)
  '(package-selected-packages
+    '(unicode-fonts evil-escape ssh ag frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
  '(read-file-name-completion-ignore-case nil)
  '(tab-width 4))
 (custom-set-faces
