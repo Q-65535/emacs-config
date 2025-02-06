@@ -81,7 +81,8 @@
 (global-set-key (kbd "M-i") 'goto-last-change-reverse)
 (global-set-key (kbd "M-o") 'goto-last-change)
 (global-set-key (kbd "C-g") 'projectile-grep)
-
+(global-set-key (kbd "<f5>") 'revert-buffer)
+(revert-buffer t t)
 
 (use-package topspace
   :config
@@ -104,6 +105,8 @@
 
 ;; word expansion must be case sensitive!!!
 (setq dabbrev-case-fold-search nil)
+(setq indent-tabs-mode nil)
+
 
 ;; don't create temporal files in my folders!
 (setq make-backup-files nil)
@@ -119,8 +122,8 @@
 (setq scroll-margin 0)
 
 ;; c-like lang indent length is 4.
-;; (setq-default c-basic-offset 4)
-(setq-default evil-shift-width 2)
+(setq-default c-basic-offset 4)
+;; (setq-default evil-shift-width 2)
 
 ;; disable sound
 (setq ring-bell-function 'ignore)
@@ -159,10 +162,17 @@
 (define-key evil-motion-state-map (kbd "C-x <up>") 'kill-current-buffer)
 (define-key evil-normal-state-map (kbd "K") 'evil-scroll-line-up)
 (define-key evil-normal-state-map (kbd "J") 'evil-scroll-line-down)
-(define-key evil-motion-state-map (kbd "C-l") 'evil-ex-nohighlight)
+(define-key evil-motion-state-map (kbd "C-u") 'evil-ex-nohighlight)
 (define-key evil-normal-state-map (kbd "z") 'evil-scroll-line-to-center)
 (define-key evil-normal-state-map (kbd "<") 'evil-shift-left-line)
 (define-key evil-normal-state-map (kbd ">") 'evil-shift-right-line)
+
+;; Remove Evil's default binding
+(define-key evil-normal-state-map (kbd "C-p") nil)
+(define-key evil-insert-state-map (kbd "C-p") nil)
+(define-key evil-visual-state-map (kbd "C-p") nil)
+;; Bind globally
+(global-set-key (kbd "C-p") 'switch-to-buffer)
 
 ;; theme
 (use-package zenburn-theme
@@ -201,7 +211,8 @@
 ;; (global-visual-line-mode t)
 
 ;; auto sync disk files
-(global-auto-revert-mode t)
+(revert-buffer :ignore-auto :noconfirm)
+(global-auto-revert-mode 1)
 
 ;; set encoding
 (set-language-environment "UTF-8")
@@ -236,7 +247,7 @@
   (set-frame-font "Menlo 16"))
 (when (eq system-type 'windows-nt)
   (set-frame-font "Menlo 12"))
-
+(global-font-lock-mode 0)
 
 ;; set not showing parenthesis pair matching
 (setq-default show-paren-data-function #'ignore)
@@ -271,7 +282,6 @@
  '(column-number-mode t)
  '(isearch-hide-immediately t)
  '(package-selected-packages
-   '(unicode-fonts evil-escape ssh ag frame-purpose topspace goto-chg go-mode helm undo-tree counsel ivy projectile better-jumper zenburn-theme use-package evil))
  '(read-file-name-completion-ignore-case nil)
  '(tab-width 4))
 (custom-set-faces
